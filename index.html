@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Commerce Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<!-- ===== Login Section ===== -->
+<div class="login-container" id="loginPage">
+  <div class="login-card glass">
+    <h2>Admin Login</h2>
+    <form id="loginForm">
+      <label for="username">👤 Username</label>
+      <input type="text" id="username" placeholder="Enter username">
+
+      <label for="password">🔒 Password</label>
+      <div class="password-box">
+        <input type="password" id="password" placeholder="Enter password">
+        <img src="assets/icons/eye-off.svg" id="togglePassword" class="eye-icon" alt="Toggle Password">
+      </div>
+
+      <button id="loginBtn" type="button">Login</button>
+      <p class="error" id="errorMsg"></p>
+    </form>
+  </div>
+</div>
+
+<!-- ===== Dashboard Section ===== -->
+<div class="dashboard" id="dashboardPage">
+
+  <!-- Sidebar -->
+  <aside class="sidebar glass">
+    <div class="brand">
+      <img src="assets/logo.png" class="logo-img" alt="Logo">
+      <h2>Flikt 
+        Admin</h2>
+    </div>
+    <ul>
+      <li class="active" data-page="home">
+        <img src="assets/icons/Home.svg" alt="Home"> <span>Home</span>
+      </li>
+      <li data-page="products">
+        <img src="assets/icons/product.svg" alt="Product"> <span>Products</span>
+      </li>
+      <li data-page="addProduct">
+        <img src="assets/icons/add.svg" alt="Add"> <span>Add Product</span>
+      </li>
+      <li data-page="analytics">
+        <img src="assets/icons/analytics.svg" alt="Analytics"> <span>Analytics</span>
+      </li>
+    </ul>
+    <button class="logoutBtn" id="logoutBtn">
+      <img src="assets/icons/logout.svg" alt="Logout"> Logout
+    </button>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- Topbar -->
+    <header class="topbar glass">
+      <div class="user-info">
+        <img src="assets/user.png" alt="User">
+        <span id="greeting">Welcome, Admin</span>
+      </div>
+      <div class="actions">
+        <span id="clock"></span>
+        <img src="assets/icons/light.svg" id="themeToggle" class="theme-icon" alt="Theme Toggle">
+      </div>
+    </header>
+
+    <!-- Home -->
+    <section class="content" id="home">
+      <h2>Dashboard Overview</h2>
+      <div class="cards">
+        <div class="card neumorph">Total Products: <span id="totalProducts">0</span></div>
+        <div class="card neumorph">In Stock: <span id="inStock">0</span></div>
+        <div class="card neumorph">Out of Stock: <span id="outStock">0</span></div>
+      </div>
+    </section>
+
+    <!-- Product Management -->
+    <section class="content hidden" id="products">
+      <h2>Product Management</h2>
+      <div class="search-container">
+     <input type="text" id="searchProduct" placeholder="Search by name or category">
+    <button id="voiceSearchBtn">🎤</button>
+     </div>
+
+      <table id="productTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th>QR Code</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Add Product -->
+    <section class="content hidden" id="addProduct">
+      <h2>Add New Product</h2>
+      <form id="productForm" class="glass">
+        <label for="productName">Product Name</label>
+        <input type="text" id="productName" placeholder="Enter product name" required>
+
+        <label for="productCategory">Category</label>
+        <input type="text" id="productCategory" placeholder="Enter category" required>
+
+        <label for="productPrice">Price</label>
+        <input type="number" id="productPrice" placeholder="Enter price" required>
+
+        <label for="productQty">Quantity</label>
+        <input type="number" id="productQty" placeholder="Enter quantity" required>
+
+        <label for="productImage">Image URL</label>
+        <input type="text" id="productImage" placeholder="Enter image URL">
+
+        <label for="productDesc">Description</label>
+        <textarea id="productDesc" placeholder="Enter description"></textarea>
+
+        <button type="submit">Add Product</button>
+      </form>
+      <button id="exportCSVBtn" class="glass" style="margin-top: 15px;">Export Products CSV</button>
+
+    </section>
+
+    <!-- Analytics -->
+    <section class="content hidden" id="analytics">
+  <h2>Analytics</h2>
+  
+  <div class="cards">
+    <div class="card neumorph">Total Products: <span id="analyticsTotalProducts">0</span></div>
+    <div class="card neumorph">In Stock: <span id="analyticsInStock">0</span></div>
+    <div class="card neumorph">Out of Stock: <span id="analyticsOutStock">0</span></div>
+  </div>
+
+  <!-- Example Chart Container -->
+  <div class="chart-container glass">
+    <canvas id="productChart"></canvas>
+  </div>
+</section>
+
+
+  </main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script src="script.js"></script>
+</body>
+</html>
